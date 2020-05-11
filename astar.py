@@ -1,4 +1,4 @@
-import numpy as np
+
 
 class Node:
     """
@@ -23,7 +23,9 @@ class Node:
 #This function return the path of the search
 def return_path(current_node,maze):
     path = []
-    no_rows, no_columns = np.shape(maze)
+    no_rows = len(maze)
+    no_columns = len(maze[0])
+    
     # here we create the initialized result maze with -1 in every position
     result = [[-1 for i in range(no_columns)] for j in range(no_rows)]
     current = current_node
@@ -98,7 +100,8 @@ def search(maze, cost, start, end):
                 d) else move the child to yet_to_visit list
     """
     #find maze has got how many rows and columns 
-    no_rows, no_columns = np.shape(maze)
+    no_rows = len(maze)
+    no_columns = len(maze[0])
     
     # Loop until you find the end
     
