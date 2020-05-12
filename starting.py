@@ -7,7 +7,7 @@ class Game(Astar):
 		Astar.__init__(self)
 		pygame.init()
 		self.display_width = 1020+2+200
-		self.display_height = 570+2
+		self.display_height = 570+2+300-210
 		self.screen = pygame.display.set_mode((self.display_width,self.display_height))
 		self.clock = pygame.time.Clock()
 		pygame.display.set_caption(u'Algorithm Visualization')
@@ -129,11 +129,13 @@ class Game(Astar):
 
 	def animate_astar(self):
 		a,path =Astar.search(self,self.maze,1,self.start_node,self.end_node)
+
 		for a in a:
 			
 			pygame.draw.rect(self.screen,self.less_red,(a.position[0]*30,a.position[1]*30,29,29))
 			pygame.display.update()
 			self.clock.tick(60)
+			
 		draw = []		
 		for i,j in enumerate(path):
 			for k,l in enumerate(j):
@@ -143,7 +145,7 @@ class Game(Astar):
 		for i in draw[::-1]:
 			print(i)
 			pygame.draw.rect(self.screen,self.red,(i[0]*30,i[1]*30,29,29))
-			self.clock.tick(60)
+			self.clock.tick(200)
 			pygame.display.update()
 
 
