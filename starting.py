@@ -1,10 +1,12 @@
 import pygame
 from astar import Astar
+from bfs import Algo
 import time
-class Game(Astar):
+class Game(Astar, Algo):
 
 	def __init__(self):
 		Astar.__init__(self)
+		Algo.__init__(self)
 		pygame.init()
 		self.display_width = 1020+2+200
 		self.display_height = 570+2+300-210
@@ -15,7 +17,7 @@ class Game(Astar):
 		self.height =22
 
 		self.walls = list()
-		self.maze = [[]]
+		self.maze = [[0 for j in range(34)]for i in range(22)]
 
 		self.white = (255,255,255)
 		self.red = (255,0,0)
@@ -112,18 +114,21 @@ class Game(Astar):
 			x,y = pygame.mouse.get_pos()
 			x = x//30
 			y = y//30
-			if pygame.mouse.get_pressed()[0] and x*30<1020 and y*30<400+8*30:
+			if pygame.mouse.get_pressed()[0] and x*30<1020 and y*30<660:
 
 				pygame.draw.rect(self.screen,self.grid_color,(x*30,y*30,29,29))
-				if (x,y) not in self.walls:
-					self.walls.append((x,y))
+			# 	if (x,y) not in self.walls:
+			# 		self.walls.append((x,y))
+			# for x in self.walls:
+			# 	self.maze[x[0]][x[1]] = 1
+				try:
+					self.maze[y][x] = 1
 
-			self.maze = [[0 for i in range(self.height)]for j in range(self.width)]
-			for x in self.walls:
-				self.maze[x[0]][x[1]] = 1
+				except:
+					print(x, y)
 
 			self.button("Astar",1025,250,190,50,self.less_blue,(0,0,50),action = self.animate_astar)
-			self.button("BFS",1025,350,190,50,self.less_blue,(0,0,50),action = None)
+			self.button("BFS",1025,350,190,50,self.less_blue,(0,0,50),action = self.executable)
 
 			pygame.display.update()
 
@@ -148,7 +153,10 @@ class Game(Astar):
 			self.clock.tick(200)
 			pygame.display.update()
 
-
+	def executable(self):
+		print(len(self.maze))
+		print(len(self.maze[1]))
+		self.execute(self.maze,self.start_node,self.end_node)
 
 
 a = Game()

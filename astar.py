@@ -35,9 +35,9 @@ class Astar():
         outer_iterations = 0
         max_iterations = (len(maze) // 2) ** 10
 
-        move  =  [[-1, 0 ], # go up
+        move  =  [[1, 0 ], # go up
                  [ 0, -1], # go left
-                 [ 1, 0 ], # go down
+                 [ -1, 0 ], # go down
                  [ 0, 1 ]] # go right
         no_rows = len(maze)
         no_columns = len(maze[0])
@@ -86,7 +86,7 @@ class Astar():
                     continue
 
                 child.g = current_node.g + cost
-                child.h = int(abs(child.position[0] - end_node.position[0])) + int(abs(child.position[1] - end_node.position[1]))
+                child.h = 4*int(abs(child.position[0] - end_node.position[0])) + int(abs(child.position[1] - end_node.position[1]))
                 # child.h = (((child.position[0] - end_node.position[0]) ** 2) +
                 #             ((child.position[1] - end_node.position[1]) ** 2))
                 print(child.h)
