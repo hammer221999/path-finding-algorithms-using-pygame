@@ -86,7 +86,7 @@ class Astar():
                     continue
 
                 child.g = current_node.g + cost
-                child.h = int(abs(child.position[0] - end_node.position[0])) + int(abs(child.position[1] - end_node.position[1]))
+                child.h =3* int(abs(child.position[0] - end_node.position[0])) + int(abs(child.position[1] - end_node.position[1]))
                 # child.h = (((child.position[0] - end_node.position[0]) ** 2) +
                 #             ((child.position[1] - end_node.position[1]) ** 2))
                 print(child.h)

@@ -1,10 +1,13 @@
 import pygame
 from astar import Astar
 import time
-class Game(Astar):
+from bfs import Bfs
+class Game(Astar,Bfs):
 
 	def __init__(self):
 		Astar.__init__(self)
+		Bfs.__init__(self)
+
 		pygame.init()
 		self.display_width = 1020+2+200
 		self.display_height = 570+2+300-210
@@ -123,7 +126,7 @@ class Game(Astar):
 				self.maze[x[0]][x[1]] = 1
 
 			self.button("Astar",1025,250,190,50,self.less_blue,(0,0,50),action = self.animate_astar)
-			self.button("BFS",1025,350,190,50,self.less_blue,(0,0,50),action = None)
+			self.button("BFS",1025,350,190,50,self.less_blue,(0,0,50),action = self.bfs)
 
 			pygame.display.update()
 
@@ -148,7 +151,8 @@ class Game(Astar):
 			self.clock.tick(200)
 			pygame.display.update()
 
-
+	def bfs(self):
+		a,b = Bfs.search(self,self.maze,self.start_node,self.end_node)
 
 
 a = Game()
