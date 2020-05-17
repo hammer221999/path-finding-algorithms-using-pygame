@@ -63,7 +63,6 @@ class Bfs():
 				
 
 				if new_node.position == end_node.position:
-					print("hogaya")
 					return self.return_path(self.visited,current_node,maze)
 	def return_path(self,visited,current_node,maze):
 		path = []

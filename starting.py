@@ -127,6 +127,7 @@ class Game(Astar,Bfs):
 
 			self.button("Astar",1025,250,190,50,self.less_blue,(0,0,50),action = self.animate_astar)
 			self.button("BFS",1025,350,190,50,self.less_blue,(0,0,50),action = self.bfs)
+			self.button("Reset",1025,500,190,50,self.less_blue,(0,0,50),action = start_game)
 
 			pygame.display.update()
 
@@ -146,7 +147,8 @@ class Game(Astar,Bfs):
 					draw.append((i,k))
 
 		for i in draw[::-1]:
-			print(i)
+	
+
 			pygame.draw.rect(self.screen,self.red,(i[0]*30,i[1]*30,29,29))
 			self.clock.tick(200)
 			pygame.display.update()
@@ -166,11 +168,14 @@ class Game(Astar,Bfs):
 					draw.append((i,k))
 
 		for i in draw[::-1]:
-			print(i)
+			
 			pygame.draw.rect(self.screen,self.red,(i[0]*30,i[1]*30,29,29))
 			self.clock.tick(200)
 			pygame.display.update()
 
-a = Game()
+def start_game():	
+	a = Game()	
 
-a.welcome_screen()
+	a.welcome_screen()
+
+start_game()
