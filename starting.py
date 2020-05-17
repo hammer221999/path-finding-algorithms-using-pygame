@@ -152,8 +152,24 @@ class Game(Astar,Bfs):
 			pygame.display.update()
 
 	def bfs(self):
-		a,b = Bfs.search(self,self.maze,self.start_node,self.end_node)
+		a,path = Bfs.search(self,self.maze,self.start_node,self.end_node)
+		for a in a:
+			
+			pygame.draw.rect(self.screen,self.less_red,(a[0]*30,a[1]*30,29,29))
+			pygame.display.update()
+			self.clock.tick(60)
+			
+		draw = []		
+		for i,j in enumerate(path):
+			for k,l in enumerate(j):
+				if l is not -1:
+					draw.append((i,k))
 
+		for i in draw[::-1]:
+			print(i)
+			pygame.draw.rect(self.screen,self.red,(i[0]*30,i[1]*30,29,29))
+			self.clock.tick(200)
+			pygame.display.update()
 
 a = Game()
 

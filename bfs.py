@@ -48,19 +48,21 @@ class Bfs():
 					continue
 				if maze[node_position[0]][node_position[1]] != 0:
 					continue
+				if node_position in self.visited:
+					continue
 
 				new_node = Node(current_node,node_position)
 
 
-				if new_node.position in self.visited:
-					continue
 
 
-				self.queue.append(new_node)
-				print(new_node)
+				if new_node not in self.queue:
+					self.queue.append(new_node)
+	
+				
 				
 
-				if new_node == end_node:
+				if new_node.position == end_node.position:
 					print("hogaya")
 					return self.return_path(self.visited,current_node,maze)
 	def return_path(self,visited,current_node,maze):
