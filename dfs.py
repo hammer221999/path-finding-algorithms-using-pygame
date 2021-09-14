@@ -8,25 +8,25 @@ class Node:
         return self.position == other.position
 
 
-class Bfs():
+class Dfs():
     def __init__(self):
         self.visited = []
-        self.queue = []
+        self.stack = []
 
     def search(self, maze, start, end):
         start_node = Node(None, tuple(start))
         end_node = Node(None, tuple(end))
 
-        self.queue.append(start_node)
+        self.stack.append(start_node)
 
         no_rows = len(maze)
         no_columns = len(maze[0])
 
         move = [[-1, 0], [0, -1], [1, 0], [0, 1]]
 
-        while (len(self.queue) > 0):
+        while (self.stack):
             children = []
-            current_node = self.queue.pop(0)
+            current_node = self.stack.pop()
 
             if current_node.position not in self.visited:
 
@@ -47,8 +47,8 @@ class Bfs():
 
                 new_node = Node(current_node, node_position)
 
-                if new_node not in self.queue:
-                    self.queue.append(new_node)
+                if new_node not in self.stack:
+                    self.stack.append(new_node)
 
                 if new_node.position == end_node.position:
                     return self.return_path(self.visited, current_node, maze)
