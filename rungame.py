@@ -1,8 +1,8 @@
 import pygame
-from astar import Astar
+from Algorithms.astar import Astar
 import time
-from bfs import Bfs
-from dfs import Dfs
+from Algorithms.bfs import Bfs
+from Algorithms.dfs import Dfs
 
 
 class Game(Astar, Bfs, Dfs):
